@@ -53,3 +53,4 @@ jobs:
   docker:
     needs: build
     uses: ./.github/workflows/Docker.yml # Usando outro arquivo de workflow
+    secrets: inherit # Como os secrets serão usados em outros arquivo, devemos liberar o uso deles para lá
