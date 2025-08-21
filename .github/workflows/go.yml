@@ -2,7 +2,7 @@ name: Go
 
 on:
   push:
-    branches: [ '*' ]
+    branches: [ '*' ] # O asterístico indica que é qualquer branch
   pull_request:
     branches: [ '*' ]
 
@@ -10,6 +10,13 @@ jobs:
 
   test:
     runs-on: ${{ matrix.os }} # Rodando os testes em 2 so diferentes, definidos abaixo em "os" em matrix
+    # Adicionando variáveis de ambiente, devemos por dentro de um job
+    env:
+      HOST: localhost
+      PORT: 5432
+      USER: user
+      PASSWORD: root
+      DBNAME: root
     strategy:
       matrix:
         go_version: ['1.18', '1.17', '>=1.18']
@@ -32,7 +39,6 @@ jobs:
     - name: Test
       run: go test -v main_test.go 
       
-  
   build:
     needs: test
     runs-on: ${{ matrix.os }} # Rodando o build também nos OS definidos acima
