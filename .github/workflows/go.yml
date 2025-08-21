@@ -9,10 +9,11 @@ on:
 jobs:
 
   test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }} # Rodando os testes em 2 so diferentes, definidos abaixo em "os" em matrix
     strategy:
       matrix:
         go_version: ['1.18', '1.17', '>=1.18']
+        os: ['ubuntu-latest', 'ubuntu-18.04']
     steps:
     - uses: actions/checkout@v3
 
@@ -33,7 +34,7 @@ jobs:
   
   build:
     needs: test
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }} # Rodando o build também nos OS definidos acima
     strategy:
       matrix:
         os: ['ubuntu-latest', 'ubuntu-18.04']
