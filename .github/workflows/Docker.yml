@@ -17,4 +17,4 @@ jobs:
       uses: docker/login-action@v2.0.0
       with:
         username: lucasnrdrigues
-        password: ${{ secrets.PASSWORD_DOCKER_HUB }} # Precisa criar esta variável no secrets
+        password: ${{ secrets.PASSWORD_DOCKER_HUB }} # Precisa criar esta variável no secrets, e devemos liberar o uso delas no arquivo que irá usar este!
